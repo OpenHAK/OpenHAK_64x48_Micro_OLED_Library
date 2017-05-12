@@ -56,6 +56,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define I2C_ADDRESS_SA0_1 0b0111101
 #define I2C_COMMAND 0x00
 #define I2C_DATA 0x40
+#define SCL_PIN	2
+#define SDA_PIN	3
 
 #define BLACK 0
 #define WHITE 1
@@ -217,11 +219,11 @@ private:
 	static const unsigned char *fontsPointer[];
 
 	// Communication
-	void spiTransfer(byte data);
-	void spiSetup();
+	// void spiTransfer(byte data);
+	// void spiSetup();
 	void i2cSetup();
 	void i2cWrite(byte address, byte control, byte data);
-	void parallelSetup();
-	void parallelWrite(byte data, byte dc);
+	// void parallelSetup();
+	// void parallelWrite(byte data, byte dc);
 };
 #endif
