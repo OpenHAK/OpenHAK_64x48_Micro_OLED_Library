@@ -1,5 +1,5 @@
-/****************************************************************************** 
-SFE_MicroOLED.h
+/******************************************************************************
+OpenHAK_MicroOLED.h
 Header file for the MicroOLED Arduino Library
 
 Jim Lindblom @ SparkFun Electronics
@@ -11,6 +11,9 @@ Emil Varughese @ Edwin Robotics Pvt. Ltd.
 July 27, 2015
 https://github.com/emil01/SparkFun_Micro_OLED_Arduino_Library/
 
+*
+*  >>>>  Modified to work with OpenHAK by Joel Murphy/Biomurph Summer 2017  <<<<
+*	 https://github.com/OpenHAK/OpenHAK_64x48_Micro_OLED_Library
 
 This file defines the hardware interface(s) for the Micro OLED Breakout. Those
 interfaces include SPI, I2C and a parallel bus.
@@ -21,9 +24,9 @@ Arduino Pro 3.3V
 Micro OLED Breakout v1.0
 
 This code was heavily based around the MicroView library, written by GeekAmmo
-(https://github.com/geekammo/MicroView-Arduino-Library), and released under 
-the terms of the GNU General Public License as published by the Free Software 
-Foundation, either version 3 of the License, or (at your option) any later 
+(https://github.com/geekammo/MicroView-Arduino-Library), and released under
+the terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later
 version.
 
 This program is distributed in the hope that it will be useful,
@@ -35,8 +38,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ******************************************************************************/
 
-#ifndef SFE_MICROOLED_H
-#define SFE_MICROOLED_H
+#ifndef OPENHAK_MICROOLED_H
+#define OPENHAK_MICROOLED_H
 
 #include <stdio.h>
 #include <Arduino.h>
@@ -137,10 +140,10 @@ public:
 	// Constructor(s)
 	MicroOLED(uint8_t rst, uint8_t dc, uint8_t cs);
 	MicroOLED(uint8_t rst, uint8_t dc);
-	MicroOLED(uint8_t rst, uint8_t dc, uint8_t cs, uint8_t wr, uint8_t rd, 
-			  uint8_t d0, uint8_t d1, uint8_t d2, uint8_t d3, 
+	MicroOLED(uint8_t rst, uint8_t dc, uint8_t cs, uint8_t wr, uint8_t rd,
+			  uint8_t d0, uint8_t d1, uint8_t d2, uint8_t d3,
 			  uint8_t d4, uint8_t d5, uint8_t d6, uint8_t d7);
-	
+
 	void begin(void);
 	virtual size_t write(uint8_t);
 
@@ -149,7 +152,7 @@ public:
 	void data(uint8_t c);
 	void setColumnAddress(uint8_t add);
 	void setPageAddress(uint8_t add);
-	
+
 	// LCD Draw functions
 	void clear(uint8_t mode);
 	void clear(uint8_t mode, uint8_t c);
@@ -191,7 +194,7 @@ public:
 	uint8_t getFontStartChar(void);
 	uint8_t getFontTotalChar(void);
 
-	// LCD Rotate Scroll functions	
+	// LCD Rotate Scroll functions
 	void scrollRight(uint8_t start, uint8_t stop);
 	void scrollLeft(uint8_t start, uint8_t stop);
 	void scrollVertRight(uint8_t start, uint8_t stop);
@@ -199,7 +202,7 @@ public:
 	void scrollStop(void);
 	void flipVertical(boolean flip);
 	void flipHorizontal(boolean flip);
-	
+
 private:
 	uint8_t csPin, dcPin, rstPin;
 	uint8_t wrPin, rdPin, dPins[8];
@@ -212,7 +215,7 @@ private:
 	uint8_t foreColor,drawMode,fontWidth, fontHeight, fontType, fontStartChar, fontTotalChar, cursorX, cursorY;
 	uint16_t fontMapWidth;
 	static const unsigned char *fontsPointer[];
-	
+
 	// Communication
 	void spiTransfer(byte data);
 	void spiSetup();

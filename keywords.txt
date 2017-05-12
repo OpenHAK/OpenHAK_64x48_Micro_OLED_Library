@@ -1,5 +1,5 @@
 #######################################
-# Syntax Coloring Map For SFE_MicroOLED
+# Syntax Coloring Map For OpenHAK_MicroOLED
 #######################################
 
 #######################################
@@ -70,5 +70,3 @@ NORM	LITERAL1
 XOR	LITERAL1
 PAGE	LITERAL1
 ALL	LITERAL1
-
-

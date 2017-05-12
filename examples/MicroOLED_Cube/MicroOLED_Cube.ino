@@ -3,47 +3,46 @@
  * Rotating a 3-D Cube on the MicroOLED Breakout
  * Jim Lindblom @ SparkFun Electronics
  * Original Creation Date: October 27, 2014
- * 
+ *
  * This sketch uses the MicroOLED library to draw a 3-D projected
  * cube, and rotate it along all three axes.
- * 
+ *
  * Development environment specifics:
  *  Arduino 1.0.5
  *  Arduino Pro 3.3V
  *  Micro OLED Breakout v1.0
- * 
+ *
  * This code is beerware; if you see me (or any other SparkFun employee) at the
  * local, and you've found our code helpful, please buy us a round!
- * 
+ *
  * Distributed as-is; no warranty is given.
+ *
+ *  >>>>  Modified to work with OpenHAK by Joel Murphy/Biomurph Summer 2017  <<<<
+ *
  ******************************************************************************/
 #include <Wire.h>  // Include Wire if you're using I2C
-#include <SPI.h>  // Include SPI if you're using SPI
-#include <SFE_MicroOLED.h>  // Include the SFE_MicroOLED library
+#include <OpenHAK_MicroOLED.h>  // Include the OpenHAK_MicroOLED library
 
 //////////////////////////
 // MicroOLED Definition //
 //////////////////////////
-#define PIN_RESET 9  // Connect RST to pin 9
-#define PIN_DC    8  // Connect DC to pin 8
-#define PIN_CS    10 // Connect CS to pin 10
-#define DC_JUMPER 0
+#define PIN_RESET 4  // Connect RST to pin 9
+#define DC_JUMPER 1
 
 //////////////////////////////////
 // MicroOLED Object Declaration //
 //////////////////////////////////
-MicroOLED oled(PIN_RESET, PIN_DC, PIN_CS); // SPI declaration
-//MicroOLED oled(PIN_RESET, DC_JUMPER);    // I2C declaration
+MicroOLED oled(PIN_RESET, DC_JUMPER);    // I2C declaration
 
 int SCREEN_WIDTH = oled.getLCDWidth();
 int SCREEN_HEIGHT = oled.getLCDHeight();
 
 float d = 3;
-float px[] = { 
+float px[] = {
   -d,  d,  d, -d, -d,  d,  d, -d };
-float py[] = { 
+float py[] = {
   -d, -d,  d,  d, -d, -d,  d,  d };
-float pz[] = { 
+float pz[] = {
   -d, -d, -d, -d,  d,  d,  d,  d };
 
 float p2x[] = {
@@ -63,7 +62,7 @@ void setup()
 {
   oled.begin();
   oled.clear(ALL);
-  oled.display();  
+  oled.display();
 }
 
 void loop()
@@ -100,15 +99,14 @@ void drawCube()
   }
 
   oled.clear(PAGE);
-  for (int i=0;i<3;i++) 
+  for (int i=0;i<3;i++)
   {
     oled.line(p2x[i],p2y[i],p2x[i+1],p2y[i+1]);
     oled.line(p2x[i+4],p2y[i+4],p2x[i+5],p2y[i+5]);
     oled.line(p2x[i],p2y[i],p2x[i+4],p2y[i+4]);
-  }    
+  }
   oled.line(p2x[3],p2y[3],p2x[0],p2y[0]);
   oled.line(p2x[7],p2y[7],p2x[4],p2y[4]);
   oled.line(p2x[3],p2y[3],p2x[7],p2y[7]);
   oled.display();
 }
-

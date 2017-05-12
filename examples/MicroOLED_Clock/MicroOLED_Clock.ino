@@ -3,37 +3,36 @@
  * Analog Clock demo using SFE_MicroOLED Library
  * Jim Lindblom @ SparkFun Electronics
  * Original Creation Date: October 27, 2014
- * 
+ *
  * This sketch uses the MicroOLED library to draw a 3-D projected
  * cube, and rotate it along all three axes.
- * 
+ *
  * Development environment specifics:
  *  Arduino 1.0.5
  *  Arduino Pro 3.3V
  *  Micro OLED Breakout v1.0
- * 
+ *
  * This code is beerware; if you see me (or any other SparkFun employee) at the
  * local, and you've found our code helpful, please buy us a round!
- * 
+ *
  * Distributed as-is; no warranty is given.
+ *
+ *  >>>>  Modified to work with OpenHAK by Joel Murphy/Biomurph Summer 2017  <<<<
+ *
  ***************************************************************/
 #include <Wire.h>  // Include Wire if you're using I2C
-#include <SPI.h>  // Include SPI if you're using SPI
-#include <SFE_MicroOLED.h>  // Include the SFE_MicroOLED library
+#include <OpenHAK_MicroOLED.h>  // Include the OpenHAK_MicroOLED library
 
 //////////////////////////
 // MicroOLED Definition //
 //////////////////////////
-#define PIN_RESET 9  // Connect RST to pin 9 (SPI & I2C)
-#define PIN_DC    8  // Connect DC to pin 8 (SPI only)
-#define PIN_CS    10 // Connect CS to pin 10 (SPI only)
-#define DC_JUMPER 0  // DC jumper setting(I2C only)
+#define PIN_RESET 4  // Connect RST to pin 9 (SPI & I2C)
+#define DC_JUMPER 1  // DC jumper setting(I2C only)
 
 //////////////////////////////////
 // MicroOLED Object Declaration //
 //////////////////////////////////
-MicroOLED oled(PIN_RESET, PIN_DC, PIN_CS);  // SPI Example
-//MicroOLED oled(PIN_RESET, DC_JUMPER);  // I2C Example
+MicroOLED oled(PIN_RESET, DC_JUMPER);  // I2C Example
 
 // Use these variables to set the initial time
 int hours = 11;
@@ -72,7 +71,7 @@ void initClockVariables()
   POS_6_Y  = MIDDLE_Y + CLOCK_RADIUS - oled.getFontHeight() - 1;
   POS_9_X  = MIDDLE_X - CLOCK_RADIUS + oled.getFontWidth() - 2;
   POS_9_Y  = MIDDLE_Y - oled.getFontHeight()/2;
-  
+
   // Calculate clock arm lengths
   S_LENGTH = CLOCK_RADIUS - 2;
   M_LENGTH = S_LENGTH * 0.7;
@@ -85,9 +84,9 @@ void setup()
   oled.clear(PAGE); // Clear the display's internal memory
   oled.clear(ALL);  // Clear the library's display buffer
   oled.display();   // Display what's in the buffer (splashscreen)
-  
+
   initClockVariables();
-  
+
   oled.clear(ALL);
   drawFace();
   drawArms(hours, minutes, seconds);
@@ -96,14 +95,14 @@ void setup()
 
 void loop()
 {
-  
+
   // Check if we need to update seconds, minutes, hours:
   if (lastDraw + CLOCK_SPEED < millis())
   {
     lastDraw = millis();
     // Add a second, update minutes/hours if necessary:
     updateTime();
-    
+
     // Draw the clock:
     oled.clear(PAGE);  // Clear the buffer
     drawFace();  // Draw the face to the buffer
@@ -138,7 +137,7 @@ void drawArms(int h, int m, int s)
 {
   double midHours;  // this will be used to slightly adjust the hour hand
   static int hx, hy, mx, my, sx, sy;
-  
+
   // Adjust time to shift display 90 degrees ccw
   // this will turn the clock the same direction as text:
   h -= 3;
@@ -150,20 +149,20 @@ void drawArms(int h, int m, int s)
     m += 60;
   if (s < 0)
     s += 60;
-  
+
   // Calculate and draw new lines:
   s = map(s, 0, 60, 0, 360);  // map the 0-60, to "360 degrees"
   sx = S_LENGTH * cos(PI * ((float)s) / 180);  // woo trig!
   sy = S_LENGTH * sin(PI * ((float)s) / 180);  // woo trig!
   // draw the second hand:
   oled.line(MIDDLE_X, MIDDLE_Y, MIDDLE_X + sx, MIDDLE_Y + sy);
-  
+
   m = map(m, 0, 60, 0, 360);  // map the 0-60, to "360 degrees"
   mx = M_LENGTH * cos(PI * ((float)m) / 180);  // woo trig!
   my = M_LENGTH * sin(PI * ((float)m) / 180);  // woo trig!
   // draw the minute hand
   oled.line(MIDDLE_X, MIDDLE_Y, MIDDLE_X + mx, MIDDLE_Y + my);
-  
+
   midHours = minutes/12;  // midHours is used to set the hours hand to middling levels between whole hours
   h *= 5;  // Get hours and midhours to the same scale
   h += midHours;  // add hours and midhours
@@ -179,9 +178,9 @@ void drawFace()
 {
   // Draw the clock border
   oled.circle(MIDDLE_X, MIDDLE_Y, CLOCK_RADIUS);
-  
+
   // Draw the clock numbers
-  oled.setFontType(0); // set font type 0, please see declaration in SFE_MicroOLED.cpp
+  oled.setFontType(0); // set font type 0, please see declaration in OpenHAK_MicroOLED.cpp
   oled.setCursor(POS_12_X, POS_12_Y); // points cursor to x=27 y=0
   oled.print(12);
   oled.setCursor(POS_6_X, POS_6_Y);
