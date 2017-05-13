@@ -42,7 +42,7 @@ void setup()
   delay(1000);     // Delay 1000 ms
   oled.clear(PAGE); // Clear the buffer.
 
-  randomSeed(analogRead(A0) + analogRead(A1));
+  randomSeed(analogRead(0) + analogRead(1));
 }
 
 void pixelExample()
@@ -245,17 +245,17 @@ void textExamples()
     oled.setFontType(0);         // Smallest font
     oled.print("A0: ");          // Print "A0"
     oled.setFontType(2);         // 7-segment font
-    oled.print(analogRead(A0));  // Print a0 reading
+    oled.print(analogRead(0));  // Print a0 reading
     oled.setCursor(0, 16);       // Set cursor to top-middle-left
     oled.setFontType(0);         // Repeat
     oled.print("A1: ");
     oled.setFontType(2);
-    oled.print(analogRead(A1));
+    oled.print(analogRead(1));
     oled.setCursor(0, 32);
     oled.setFontType(0);
     oled.print("A2: ");
     oled.setFontType(2);
-    oled.print(analogRead(A2));
+    oled.print(analogRead(2));
     oled.display();
     delay(100);
   }
