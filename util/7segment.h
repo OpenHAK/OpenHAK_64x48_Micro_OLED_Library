@@ -1,11 +1,11 @@
-/****************************************************************************** 
+/******************************************************************************
 7segment.h
 Definition for 7-segment font
 
 This file was imported from the MicroView library, written by GeekAmmo
-(https://github.com/geekammo/MicroView-Arduino-Library), and released under 
-the terms of the GNU General Public License as published by the Free Software 
-Foundation, either version 3 of the License, or (at your option) any later 
+(https://github.com/geekammo/MicroView-Arduino-Library), and released under
+the terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later
 version.
 
 This program is distributed in the hope that it will be useful,
@@ -33,7 +33,7 @@ https://github.com/emil01/SparkFun_Micro_OLED_Arduino_Library/
 
 static const unsigned char sevensegment [] PROGMEM = {
 	// first row defines - FONTWIDTH, FONTHEIGHT, ASCII START CHAR, TOTAL CHARACTERS, FONT MAP WIDTH HIGH, FONT MAP WIDTH LOW (2,56 meaning 256)
-	10,16,46,12,1,20,		
+	10,16,46,12,1,20,
 	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 	0x00, 0x00, 0x00, 0x00, 0x78, 0xFC, 0x02, 0x03, 0x03, 0x03, 0x03, 0x02, 0xFC, 0x78, 0x00, 0x00,
 	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xFF, 0x7E, 0x00, 0x00, 0x02, 0x83, 0x83, 0x83, 0x83, 0x02,
@@ -51,3 +51,53 @@ static const unsigned char sevensegment [] PROGMEM = {
 	0xC1, 0xC1, 0xC1, 0x41, 0x3E, 0x1C, 0x00, 0x00, 0x41, 0xC1, 0xC1, 0xC1, 0xC1, 0x41, 0x3E, 0x1C
 };
 #endif
+
+/* just gotta add one more character to get a ':' ....
+
+16 x 15 bytes = 240 bytes = 1920 bits
+
+w x h = 10 x 16 = 160 bits
+	160/8 = 20 bytes per character
+	240 total bytes = 12 characters
+
+
+0x1C, 0x3E, 0x41, 0xC1, 0xC1 | 0xC1, 0xC1, 0x41, 0x3E, 0x1C | 0x00, 0x00, 0x41, 0xC1, 0xC1 | 0xC1, 0xC1, 0x41, 0x3E, 0x1C
+
+1C-3E
+0001 1100 00
+3E-41
+11 1110 0100
+41-C1
+0001 1100 00
+C1-C1
+01 1100 0001	-
+C1-C1
+1100 0001 11
+C1-41
+00 0001 0100
+41-3E
+0001 0011 11
+3E-1C
+10 0001 1100	-
+00-00
+0000 0000 00
+00-41
+00 0000 0100
+41-C1
+0001 1100 00
+C1-C1
+01 1100 0001	-
+C1-C1
+1100 0001 11
+C1-41
+00 0001 0100
+41-3E
+0001 0011 11
+3E-1C
+10 0001 1100
+
+
+
+
+
+*/
