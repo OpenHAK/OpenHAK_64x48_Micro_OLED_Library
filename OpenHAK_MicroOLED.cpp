@@ -852,11 +852,11 @@ void  MicroOLED::drawChar(uint8_t x, uint8_t y, uint8_t c, uint8_t color, uint8_
 	charColPositionOnBitmap=tempC % charPerBitmapRow;  // =16
 	charRowPositionOnBitmap=int(tempC/charPerBitmapRow); // =1
 	charBitmapStartPosition=(charRowPositionOnBitmap * fontMapWidth * (fontHeight/8)) + (charColPositionOnBitmap * fontWidth) ;
-
 	// each row on LCD is 8 bit height (see datasheet for explanation)
 	for(row=0;row<rowsToDraw;row++) {
 		for (i=0; i<fontWidth;i++) {
 			temp=pgm_read_byte(fontsPointer[fontType]+FONTHEADERSIZE+(charBitmapStartPosition+i+(row*fontMapWidth)));
+
 			for (j=0;j<8;j++) {			// 8 is the LCD's page height (see datasheet for explanation)
 				if (temp & 0x1) {
 					pixel(x+i,y+j+(row*8), color, mode);
