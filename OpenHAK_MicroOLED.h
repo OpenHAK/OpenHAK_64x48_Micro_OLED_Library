@@ -13,7 +13,8 @@ https://github.com/emil01/SparkFun_Micro_OLED_Arduino_Library/
 
 *
 *  >>>>  Modified to work with OpenHAK by Joel Murphy/Biomurph Summer 2017  <<<<
-*	 https://github.com/OpenHAK/OpenHAK_64x48_Micro_OLED_Library
+*	 >>>>  https://github.com/OpenHAK/OpenHAK_64x48_Micro_OLED_Library  <<<<
+*
 
 This file defines the hardware interface(s) for the Micro OLED Breakout. Those
 interfaces include SPI, I2C and a parallel bus.
@@ -140,11 +141,8 @@ typedef enum COMM_MODE{
 class MicroOLED : public Print{
 public:
 	// Constructor(s)
-	MicroOLED(uint8_t rst, uint8_t dc, uint8_t cs);
 	MicroOLED(uint8_t rst, uint8_t dc);
-	MicroOLED(uint8_t rst, uint8_t dc, uint8_t cs, uint8_t wr, uint8_t rd,
-			  uint8_t d0, uint8_t d1, uint8_t d2, uint8_t d3,
-			  uint8_t d4, uint8_t d5, uint8_t d6, uint8_t d7);
+
 
 	void begin(void);
 	virtual size_t write(uint8_t);
@@ -206,24 +204,20 @@ public:
 	void flipHorizontal(boolean flip);
 
 private:
-	uint8_t csPin, dcPin, rstPin;
-	uint8_t wrPin, rdPin, dPins[8];
+	uint8_t dcPin, rstPin;
 	volatile uint8_t *wrport, *wrreg, *rdport, *rdreg;
 	uint8_t wrpinmask, rdpinmask;
 	micro_oled_mode interface;
 	byte i2c_address;
 	volatile uint8_t *ssport, *dcport, *ssreg, *dcreg;	// use volatile because these are fixed location port address
-	uint8_t mosipinmask, sckpinmask, sspinmask, dcpinmask;
+	// uint8_t mosipinmask, sckpinmask, sspinmask, dcpinmask;
 	uint8_t foreColor,drawMode,fontWidth, fontHeight, fontType, fontStartChar, fontTotalChar, cursorX, cursorY;
 	uint16_t fontMapWidth;
 	static const unsigned char *fontsPointer[];
 
 	// Communication
-	// void spiTransfer(byte data);
-	// void spiSetup();
 	void i2cSetup();
 	void i2cWrite(byte address, byte control, byte data);
-	// void parallelSetup();
-	// void parallelWrite(byte data, byte dc);
+
 };
 #endif
