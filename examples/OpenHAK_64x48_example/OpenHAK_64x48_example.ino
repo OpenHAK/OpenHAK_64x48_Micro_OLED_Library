@@ -1,43 +1,29 @@
 /******************************************************************************
- * MicroOLED_Demo.ino
- * SFE_MicroOLED Library Demo
- * Jim Lindblom @ SparkFun Electronics
- * Original Creation Date: October 27, 2014
+ * OpenHAK_64x48_example.ino
  *
- * This sketch uses the MicroOLED library to draw a 3-D projected
- * cube, and rotate it along all three axes.
+ * Made by Joel Murphy for OpenHAK, Spring 2017
+ * Targets the Simblee radio module on the OpenHAK fitness tracker.
  *
- * Development environment specifics:
- *  Arduino 1.0.5
- *  Arduino Pro 3.3V
- *  Micro OLED Breakout v1.0
- *
- * This code is beerware; if you see me (or any other SparkFun employee) at the
+ * This code is beerware; if you see me (or any other OpehHAK contributor) at the
  * local, and you've found our code helpful, please buy us a round!
  *
  * Distributed as-is; no warranty is given.
  *
- *  >>>>  Modified to work with OpenHAK by Joel Murphy/Biomurph Summer 2017  <<<<
  *
  ******************************************************************************/
-#include <Wire.h>  // Include Wire if you're using I2C
+#include <Wire.h>  // Include Wire 'cause we're using I2C
 #include <OpenHAK_MicroOLED.h>  // Include the OpenHAK_MicroOLED library
 
-//////////////////////////
-// MicroOLED Definition //
-//////////////////////////
+
 #define PIN_RESET 4  // Connect RST to pin 9
 #define DC_JUMPER 1  // DC Jumper connected to 3V sets the I2C address
 
-//////////////////////////////////
-// MicroOLED Object Declaration //
-//////////////////////////////////
 MicroOLED oled(PIN_RESET, DC_JUMPER);    // reset pin, I2C address
 
 void setup()
 {
   Serial.begin(250000);
-  Serial.println("microOLED test");
+  Serial.println("OpenHAK microOLED example");
   delay(100);
   oled.begin();    // Initialize the OLED
   oled.clear(ALL); // Clear the display's internal memory
@@ -55,3 +41,5 @@ void setup()
 
 void loop()
 {
+
+}
