@@ -8,10 +8,10 @@ What follows is mostly from the original Sparkfun README
 
 *************************
 
-### SparkFun Micro OLED Breakout Arduino Library
+### OpenHAK Micro OLED Breakout Arduino Library
 
 
-![SparkFun Micro OLED Breakout](https://cdn.sparkfun.com//assets/parts/9/9/5/6/OLED_Action.jpg)
+![SparkFun Micro OLED Breakout](images/64x48_oled.jpg)
 
 [*SparkFun Micro OLED Breakout (LCD-13003)*](https://www.sparkfun.com/products/13003)
 
@@ -25,6 +25,8 @@ Documentation
 * **[Installing an Arduino Library Guide](https://learn.sparkfun.com/tutorials/installing-an-arduino-library)** - Basic information on how to install an Arduino library.
 * **[Product Repository](https://github.com/sparkfun/Micro_OLED_Breakout)** - Main repository (including hardware files) for the Micro OLED Breakout.
 * **[Hookup Guide](https://learn.sparkfun.com/tutorials/micro-oled-breakout-hookup-guide)** - Basic hookup guide for the Micro OLED Breakout.
+
+**This library was modified by Joel Murphy, Spring 2017. It specifically targets the Simblee radio module on the OpenHAK fitness tracker.**
 
 SparkFun Products that use this Library
 ---------------------------------
@@ -42,4 +44,4 @@ The **code** is released under the GPL v3 license. See the included LICENSE.md f
 
 Distributed as-is; no warranty is given.
 
-- Your friends at SparkFun.
+- Your friends at SparkFun and OpenHAK.
