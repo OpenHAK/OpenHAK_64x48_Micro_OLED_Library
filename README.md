@@ -1,7 +1,10 @@
 # OpenHAK 64x48 OLED Display Library
 
-This library is based on Sparkfun Micro OLED Arduino Library. It has been modified to work with the OpenHAK Beta hardware, which targets a Simlbee radio module and uses I2C.  
-Modifications made by Joel Murphy/Biomurph Summer, 2017. 
+This library is based on Sparkfun Micro OLED Arduino Library.  
+It has been modified to work with the OpenHAK Beta hardware,  
+which targets a Simlbee radio module and uses I2C.  
+
+Modifications made by Joel Murphy/Biomurph Spring, 2017. 
   
 What follows is mostly from the original Sparkfun README 
 
