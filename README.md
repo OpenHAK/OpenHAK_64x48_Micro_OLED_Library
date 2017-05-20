@@ -11,7 +11,7 @@ What follows is mostly from the original Sparkfun README
 ### OpenHAK Micro OLED Breakout Arduino Library
 
 
-![SparkFun Micro OLED Breakout](images/64x48_oled.jpg)
+![SparkFun Micro OLED Breakout](images/example.jpg)
 
 [*SparkFun Micro OLED Breakout (LCD-13003)*](https://www.sparkfun.com/products/13003)
 
