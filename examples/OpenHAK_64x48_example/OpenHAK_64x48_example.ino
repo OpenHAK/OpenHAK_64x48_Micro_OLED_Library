@@ -35,6 +35,8 @@ void setup()
   oled.setFontType(0);
   oled.println("text from");
   oled.print("Joel");
+  oled.flipVertical(true);
+  oled.flipHorizontal(true);
   oled.display();
 }
 
