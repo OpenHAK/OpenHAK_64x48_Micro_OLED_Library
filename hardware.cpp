@@ -49,7 +49,7 @@ void MicroOLED::i2cSetup()
 {
 	// Initialize Wire library (I2C)
 	// Using Wire2, because Wire is already being used by OpenHAK
-	Wire2.beginOnPins(SCL_PIN, SDA_PIN);
+	Wire2.beginOnPins(OLED_SCL, OLED_SDA);
 }
 
 /** \brief  Write a byte over I2C
