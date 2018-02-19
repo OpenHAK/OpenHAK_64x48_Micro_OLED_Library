@@ -169,7 +169,7 @@ void MicroOLED::begin()
 	setDrawMode(NORM);
 	setCursor(0,0);
 
-	pinMode(dcPin, OUTPUT);
+	// pinMode(dcPin, OUTPUT);
 	pinMode(rstPin, OUTPUT);
 
 		i2cSetup();
@@ -181,7 +181,8 @@ void MicroOLED::begin()
 	digitalWrite(rstPin, LOW);	// Bring RST low, reset the display
 	delay(10);	// wait 10ms
 	digitalWrite(rstPin, HIGH);	// Set RST HIGH, bring out of reset
-
+	clear(ALL);						// Avoid flashing last screen Memory
+	clear(PAGE);
 	// Display Init sequence for 64x48 OLED module
 	command(DISPLAYOFF);			// 0xAE
 
@@ -218,7 +219,7 @@ void MicroOLED::begin()
 	command(0x40);
 
 	command(DISPLAYON);				//--turn on oled panel
-	clear(ALL);						// Erase hardware memory inside the OLED controller to avoid random data in memory.
+	// clear(ALL);						// Erase hardware memory inside the OLED controller to avoid random data in memory.
 }
 
 /** \brief Send the display a command byte

@@ -59,7 +59,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define I2C_DATA 0x40
 #define OLED_SCL	2
 #define OLED_SDA	3
-#define PIN_RESET	4
+#define OLED_RESET	4
 #define DC	1
 
 #define BLACK 0
@@ -68,6 +68,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define LCDWIDTH			64
 #define LCDHEIGHT			48
 #define FONTHEADERSIZE		6
+#define FONT_5x7	0
+#define FONT_8x16	1
+#define SEVEN_SEGMENT	2
+#define FONT_NUMBER_12x48	3
+#define FONT_LETTER_31x48	4	// if included will use up flash
 
 #define NORM				0
 #define XOR					1
