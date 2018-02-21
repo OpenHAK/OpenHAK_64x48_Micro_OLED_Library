@@ -59,7 +59,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define I2C_DATA 0x40
 #define OLED_SCL	2
 #define OLED_SDA	3
-#define PIN_RESET	4
+#define OLED_RESET	4
 #define DC	1
 
 #define BLACK 0
